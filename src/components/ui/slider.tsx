@@ -1,11 +1,11 @@
 import { Slider as ChakraSlider, For, HStack } from '@chakra-ui/react';
 import * as React from 'react';
 
-export interface SliderProps extends ChakraSlider.RootProps {
+export type SliderProps = ChakraSlider.RootProps & {
   marks?: Array<number | { value: number; label: React.ReactNode }>;
   label?: React.ReactNode;
   showValue?: boolean;
-}
+};
 
 export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(function Slider(props, ref) {
   const { marks: marksProp, label, showValue, ...rest } = props;
@@ -51,9 +51,9 @@ function SliderThumbs(props: { value?: number[] }) {
   );
 }
 
-interface SliderMarksProps {
+export type SliderMarksProps = {
   marks?: Array<number | { value: number; label: React.ReactNode }>;
-}
+};
 
 const SliderMarks = React.forwardRef<HTMLDivElement, SliderMarksProps>(function SliderMarks(props, ref) {
   const { marks } = props;

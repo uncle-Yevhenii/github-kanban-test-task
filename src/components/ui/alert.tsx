@@ -1,12 +1,12 @@
 import { Alert as ChakraAlert } from '@chakra-ui/react';
 import * as React from 'react';
 
-export interface AlertProps extends Omit<ChakraAlert.RootProps, 'title'> {
+export type AlertProps = Omit<ChakraAlert.RootProps, 'title'> & {
   startElement?: React.ReactNode;
   endElement?: React.ReactNode;
   title?: React.ReactNode;
   icon?: React.ReactElement;
-}
+};
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   const { title, children, icon, startElement, endElement, ...rest } = props;
