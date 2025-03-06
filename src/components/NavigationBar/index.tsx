@@ -11,7 +11,7 @@ export async function NavigationBar() {
   const session = await auth();
 
   return (
-    <Flex w="100vw" p="4" align="center" justify="space-between">
+    <Flex w="100vw" h="80px" p="4" align="center" justify="space-between">
       <Flex as="form" justify="space-between" align="center" w="75%" gap="4">
         <Input placeholder="Enter your email" />
         <Button variant="surface">
@@ -22,7 +22,6 @@ export async function NavigationBar() {
 
       <Flex maxW="25%" align="center" justify="center" gap="4">
         {session?.user ? <UserInfo name={session.user.name ?? ''} image={session.user.image ?? ''} /> : <SignIn />}
-
         <RepositoryLink />
       </Flex>
     </Flex>
