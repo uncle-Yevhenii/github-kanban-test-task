@@ -3,7 +3,7 @@ import { FolderGit2 } from 'lucide-react';
 
 export function RepositoryLink() {
   return (
-    <Button variant="surface" asChild>
+    <Button variant="surface" size="lg" asChild>
       <Link
         href="https://github.com/uncle-Yevhenii/github-kanban-test-task"
         target="_blank"

@@ -1,4 +1,5 @@
 export type Issue = {
+  body: string;
   id: number;
   number: number;
   title: string;

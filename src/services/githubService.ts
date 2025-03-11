@@ -2,6 +2,8 @@ import { Octokit } from 'octokit';
 
 import { Issue, RepoInfo } from '@/types';
 
+const accessToken = process.env.GITHUB_ACCESS_TOKEN;
+
 export const parseGithubUrl = (url: string): RepoInfo | null => {
   try {
     const urlObj = new URL(url);
@@ -22,18 +24,16 @@ export const parseGithubUrl = (url: string): RepoInfo | null => {
 export const fetchRepoIssues = async (
   owner: string,
   repo: string,
-  accessToken?: string,
-  maxIssues: number = 100 // Обмеження за замовчуванням
+
+  maxIssues: number = 100
 ): Promise<{ issues: Issue[]; stars: number }> => {
   const octokit = new Octokit({ auth: accessToken });
 
-  // Отримання зірок репозиторію
   const repoData = await octokit.rest.repos.get({
     owner,
     repo,
   });
 
-  // Отримання issues з обмеженням кількості
   const issues = [];
   let page = 1;
   let hasMore = true;
@@ -53,13 +53,12 @@ export const fetchRepoIssues = async (
       if (response.data.length === 0) {
         hasMore = false;
       } else {
-        // Фільтруємо пул-реквести
         const filteredIssues = response.data.filter((issue) => !('pull_request' in issue));
         issues.push(...filteredIssues);
 
         if (issues.length >= maxIssues) {
           console.log(`Reached maximum number of issues (${maxIssues})`);
-          issues.splice(maxIssues); // Обмежуємо до maxIssues
+          issues.splice(maxIssues);
           hasMore = false;
         }
 

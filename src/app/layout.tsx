@@ -1,6 +1,5 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import { NavigationBar } from '@/components/NavigationBar';
 import { Provider } from '@/components/ui/provider';
 
 import type { Metadata } from 'next';
@@ -30,10 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Provider>
-          <NavigationBar />
-          {children}
-        </Provider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
